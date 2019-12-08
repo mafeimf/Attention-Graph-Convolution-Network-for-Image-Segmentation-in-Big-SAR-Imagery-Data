@@ -16,8 +16,11 @@ train the feature_extraction_net
 ## utils9.py
 define the function for calculating pixel-level Evaluation Metrics
 
-## the data of Shanxi Pucheng can be downloaded from https://pan.baidu.com/s/1ZwIA3-iLqHccXwmGYkUXNg
+## 
+the data of Shanxi Pucheng can be downloaded from https://pan.baidu.com/s/1ZwIA3-iLqHccXwmGYkUXNg
 
-## the code runs in python 2.7
+## 
+the code runs in python 2.7
 
-## any problem please email me : mafeimf@buaa.edu.cn
+## 
+any problem please email me : mafeimf@buaa.edu.cn
