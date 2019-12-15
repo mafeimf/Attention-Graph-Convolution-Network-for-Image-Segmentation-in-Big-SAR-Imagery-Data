@@ -18,21 +18,15 @@ define the function for calculating pixel-level Evaluation Metrics
 
 ## 
 the code runs in python 2.7
-networkx                      2.2//
-numpy                         1.16.2
-Pillow                        5.4.1
-scikit-image                  0.14.2
-scikit-learn                  0.20.3
-scipy                         1.2.1
-segraph                       0.5
-setuptools                    40.8.0
-singledispatch                3.4.0.3
-six                           1.12.0
-sklearn                       0.0
-subprocess32                  3.5.3
-toolz                         0.9.0
-torch                         0.4.0
-torchfile                     0.1.0
+
+### numpy                         1.16.2
+### Pillow                        5.4.1
+### scikit-image                  0.14.2
+### scikit-learn                  0.20.3
+### scipy                         1.2.1
+### segraph                       0.5
+### torch                         0.4.0
+### torchfile                     0.1.0
 
 ## 
 any problem please email me : mafeimf@buaa.edu.cn
