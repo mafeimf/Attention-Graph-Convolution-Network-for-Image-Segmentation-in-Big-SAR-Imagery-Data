@@ -18,7 +18,7 @@ define the function for calculating pixel-level Evaluation Metrics
 
 ## 
 the code runs in python 2.7
-networkx                      2.2
+networkx                      2.2//
 numpy                         1.16.2
 Pillow                        5.4.1
 scikit-image                  0.14.2
