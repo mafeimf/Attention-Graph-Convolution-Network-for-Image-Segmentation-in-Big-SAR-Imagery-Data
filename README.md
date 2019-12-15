@@ -17,7 +17,7 @@ train the feature_extraction_net
 define the function for calculating pixel-level Evaluation Metrics
 
 ## 
-the code runs in python 2.7
+the code runs in python 2.7 and pytorch 3.0
 
 ## 
 any problem please email me : mafeimf@buaa.edu.cn
