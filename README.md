@@ -1,7 +1,7 @@
 # Attention-Graph-Convolution-Network-for-Image-Segmentation-in-Big-SAR-Imagery-Data
 this code implements the method proposed in paper "Attention Graph Convolution Network for Image Segmentation in Big SAR Imagery Data". if it helps you, please kindly cite this paper. https://doi.org/10.3390/rs11212586
 
-##How to use?
+## How to use?
 1. run "python generate_gt.py	", to generate the ground truth data from GT.image
 2. run "python main.py" to train and test our model,and print the pixel-level Evaluation Metrics 
 
