@@ -15,10 +15,10 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.autograd import Variable
 import shutil
-from utils10 import  accuracy
-from models10 import GAT, SpGAT,CNN_fea,GAT2_my,GCN
+from utils9 import  accuracy
+from models9 import GAT, SpGAT,CNN_fea,GCN
 import os
-import utils10
+import utils9
 from torch import nn
 from torch.autograd import Variable
 from torch.optim import RMSprop
@@ -35,20 +35,10 @@ from skimage import io
 from skimage import data,color,morphology,measure
 from skimage.feature import local_binary_pattern
 
-def generate_gt_fangchenggang():
-    #gt_original=image.imread('../../datasets/zhanjiang/ground-truth2.jpg')
-    gt_original=image.imread('../../datasets/fangchenggang/ground_truth2.jpg')
-    out_GT=np.zeros((gt_original.shape[0],gt_original.shape[1]),dtype="uint8")+4
-    out_GT[(gt_original[:,:,0]<=20) *( gt_original[:,:,1]>=240)*(gt_original[:,:,2]<=20)]=0
-    out_GT[(gt_original[:,:,0]<=50) *( gt_original[:,:,1]<=50)*(gt_original[:,:,2]<=50)]=1
-    out_GT[(gt_original[:,:,0]>=200) *( gt_original[:,:,1]<=50)*(gt_original[:,:,2]<=50)]=2
-    out_GT[(gt_original[:,:,0]>=200) *( gt_original[:,:,1]>=200)*(gt_original[:,:,2]<=50)]=3
-    out_GT[(gt_original[:,:,0]<=50) *( gt_original[:,:,1]<=50)*(gt_original[:,:,2]>=200)]=2
-    out_GT[(gt_original[:,:,0]>=200) *( gt_original[:,:,1]>=200)*(gt_original[:,:,2]>=200)]=4
-    np.save('gt_numerical_fangchenggang.npy',out_GT)
+
 
 def generate_gt_shanxipucheng():
-    gt_original=image.imread('../../datasets/陕西蒲城/陕西蒲城GT_裁剪.jpg')
+    gt_original=image.imread('./GT.jpg')
      #gt_original=image.imread('../../datasets/fangchenggang/ground_truth2.jpg')
     out_GT=np.zeros((gt_original.shape[0],gt_original.shape[1]),dtype="uint8")+1
     out_GT[(gt_original[:,:,0]>=200) *( gt_original[:,:,1]>=200)*(gt_original[:,:,2]<=50)]=1
@@ -56,4 +46,4 @@ def generate_gt_shanxipucheng():
 
     np.save('gt_numerical_shanxipucheng.npy',out_GT)
     #np.save('gt_numerical_fangchenggang.npy',out_GT)
-generate_gt_shanxiweinan()
+generate_gt_shanxipucheng()

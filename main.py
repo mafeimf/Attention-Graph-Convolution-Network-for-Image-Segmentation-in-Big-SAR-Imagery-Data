@@ -78,11 +78,11 @@ checkpoint_cnn = torch.load('./model_cnn_shanxipucheng.pth')
 patch_size=32
 num_label=2
 n_segments=800
-rownum=5
-colnum=17
+rownum=2
+colnum=2
 max_sp=800
 
-train_patch_ind=range(35,51)
+train_patch_ind=range(0,4,2)
 fea_cnn_dim=100
 test_patch_ind=range(rownum*colnum)
 for j_tr in train_patch_ind:
@@ -110,6 +110,54 @@ model_cnnfea.load_state_dict(checkpoint_cnn['net'])
 model_cnnfea.eval()
 
 # #########################Load data######################
+
+iput_orig=image.imread('SAR.jpg')
+gt_original=image.imread('GT.jpg')
+
+h_ipt=iput_orig.shape[0]
+w_ipt=iput_orig.shape[1]
+rowheight=256
+colwidth=256
+rownum = h_ipt // rowheight
+colnum = w_ipt // colwidth
+print(rownum,colnum)
+def read_all_img(train_patch_ind,iput_orig,gt_original,model_cnnfea):
+    train_features=[]
+    train_labels=[]
+    train_adj=[]
+    adj_Propg=[]
+    for i_tr in range(len(train_patch_ind)):
+        i_train=train_patch_ind[i_tr]
+        r=i_train//colnum
+        c=i_train%colnum
+        print("row:",r,"col:",c,"img:", r*colnum+c )
+        iput_img= iput_orig[r * rowheight:(r + 1) * rowheight,c * colwidth:(c + 1) * colwidth]
+        gt      = gt_original      [r * rowheight:(r + 1) * rowheight,c * colwidth:(c + 1) * colwidth,:]                           
+        adj,patch,labels,adj_pg= utils9.read_img(rownum,colnum,iput_orig,gt_original,iput_img,gt,n_segments,max_sp,patch_size)
+        x_no_use,patch_fea=model_cnnfea((patch/255.).cuda())
+        
+        train_features.append(patch_fea.detach().cpu().numpy())
+        train_labels.append(labels.detach().cpu().numpy())
+        train_adj.append(adj.detach().cpu().numpy())
+        adj_Propg.append(adj_pg.detach().cpu().numpy())
+    return train_features,train_labels,train_adj,adj_Propg
+
+train_features,train_labels,train_adj,train_adj_pg= read_all_img(train_patch_ind,iput_orig,gt_original,model_cnnfea)
+np.save('train_features_Pucheng.npy',train_features)
+np.save('train_labels_Pucheng.npy',train_labels)
+np.save('train_adj_Pucheng',train_adj)
+np.save('train_adj_pg_Pucheng.npy',train_adj_pg)
+
+test_features,test_labels,test_adj,test_adj_pg= read_all_img(test_patch_ind,iput_orig,gt_original,model_cnnfea)
+np.save('test_features_Pucheng.npy',test_features)
+np.save('test_labels_Pucheng.npy',test_labels)
+np.save('test_adj_Pucheng.npy',test_adj)
+np.save('test_adj_pg_Pucheng.npy',test_adj_pg)
+
+print("Saved the data")
+
+
+
 train_features=np.load('train_features_Pucheng.npy')
 train_labels=np.load('train_labels_Pucheng.npy')
 train_adj=np.load('train_adj_Pucheng.npy')

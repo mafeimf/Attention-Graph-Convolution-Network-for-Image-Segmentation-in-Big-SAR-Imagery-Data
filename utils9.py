@@ -177,7 +177,7 @@ def draw_fun(out_img,label,ind_pixel,region_fea):
 
 def pixel_report(y_pred,gt_numerical ,n_segments,max_n_superpxiel,rownum,colnum,train_patch_ind,test_patch_ind,target_name = ['urban','farmland']):
     #得到预测结果共29个out_img,即(rowheight,colwidth,29)
-    iput_img_original=image.imread('../../datasets/陕西蒲城/陕西蒲城_裁剪.jpg')
+    iput_img_original=image.imread('SAR.jpg')
     h_ipt=iput_img_original.shape[0]
     w_ipt=iput_img_original.shape[1]   
     rowheight = h_ipt // rownum
